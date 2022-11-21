@@ -13,7 +13,7 @@ echo "[DATA]    ${DATADIR}/${DATA}"
 echo "[RESULT]  ${WOKESHOP}/${MODEL}_${NAME}"
 echo "[CROSS]   K=$K"
 
-# bash examples/antibody/scripts/individual.sh sars0510 ablang_heavy sars_germ_sm 10
+# bash antibody/scripts/individual.sh sars0510 ablang_heavy sars_germ_sm 10
 
 if [ -f logs/${MODEL}_${NAME}_patient.log ]; then
     echo "Remove existing ${MODEL}_${NAME}_patient.log "
@@ -23,12 +23,12 @@ fi
 for i in $(seq 0 $K)  
     do
         echo ${MODEL}_${NAME}_${i} 
-        python3 examples/antibody/analyze.py -mode GetBestIndividual \
+        python3 antibody/utils/analyze.py -mode GetBestIndividual \
                   -i ${WOKESHOP}/${MODEL}_${NAME}/${MODEL}_${NAME}_${i} \
                   -d ${DATADIR}/${DATA}/cross_valid_${i}_all.json >> logs/${MODEL}_${NAME}_patient.log
     done
 
-python3 examples/antibody/analyze.py -mode GetCrossIndividual -i logs/${MODEL}_${NAME}_patient.log
+python3 antibody/utils/analyze.py -mode GetCrossIndividual -i logs/${MODEL}_${NAME}_patient.log
 
 
 

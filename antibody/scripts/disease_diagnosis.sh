@@ -7,7 +7,7 @@ disease=$2
 models=$3
 NAME=$4
 
-# bash examples/antibody/scripts/disease_diagnosis.sh [download/seq/ind] sars eatlm name
+# bash antibody/scripts/disease_diagnosis.sh [download/seq/ind] sars eatlm name
 
 if [ "$MODE" == "download" ]; then
   for d in $disease  
@@ -27,7 +27,7 @@ elif [ "$MODE" == "seq" ]; then
       for m in $models
         do
           echo "Sequence-level ${m}_${d}${NAME}.log"
-          python3 examples/antibody/analyze.py -mode GetCrossResult -i logs/${m}_${d}${NAME}.log
+          python3 antibody/utils/analyze.py -mode GetCrossResult -i logs/${m}_${d}${NAME}.log
         done
     done
 

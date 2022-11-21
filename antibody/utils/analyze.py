@@ -78,7 +78,7 @@ def GetPatientLevel(hypos, refers):
 
 
 def GetCrossResult(args):
-    # python3 examples/antibody/utils/analyze.py -mode GetCrossResult -i test.log -flag 1
+    # python3 antibody/utils/analyze.py -mode GetCrossResult -i test.log -flag 1
     k = args.k
     if args.flag == 1:
         show_flag = ['best.valid.acc', 'best.valid.mcc', 'best.valid.roc', 'best.valid.f', 'best.valid.precision', 'best.valid.recall']
@@ -125,7 +125,7 @@ def GetCrossResult(args):
     print('Std\t{}'.format('\t'.join([str(round(x,4)) for x in select_scores.std(axis=0)])))    \
 
 def GetBestIndividual(args):
-    # python3 examples/antibody/analyze.py -mode GetBestIndividual \
+    # python3 antibody/utils/analyze.py -mode GetBestIndividual \
     #               -i ${WOKESHOP}/${MODEL}_${NAME}/${MODEL}_${NAME}_${i} \
     #               -d ${DATADIR}/${DATA}/cross_valid_${i}_all.json 
     refers = readJson(args.d)
@@ -153,7 +153,7 @@ def GetBestIndividual(args):
     print('\n\n')
 
 def GetCrossIndividual(args):
-    # python3 examples/antibody/analyze.py -mode GetCrossIndividual -i logs/${MODEL}_${NAME}_patient.log
+    # python3 antibody/utils/analyze.py -mode GetCrossIndividual -i logs/${MODEL}_${NAME}_patient.log
     data = readLog(args.i)
     states = [json.loads(line.split('|')[-1].strip()) for line in data if line.startswith('Epoch')]
 
@@ -169,7 +169,7 @@ def GetCrossIndividual(args):
     print('Std\t{}'.format('\t'.join([str(round(x,4)) for x in select_scores.std(axis=0)])))    
 
 def GetProbSeq(args):
-    # python3 examples/antibody/analyze.py 
+    # python3 antibody/utils/analyze.py 
     #           -mode GetProbSeq 
     #           -i clusterRes_07_train_chunk_catpos_align_bz200_mutation_sars0513_2 -d sars_germ_sm_2
     #           -threshold_mode high 
@@ -243,7 +243,7 @@ def MatchCDR(cdr, db, thre=0.7):
 
 
 def FindNewBinder(args):
-    # python3 examples/antibody/analyze.py -mode FindNewBinder 
+    # python3 antibody/utils/analyze.py -mode FindNewBinder 
     #           -i eatlm_sars.log
     #           -threshold 0.85
     #           -o sars.highprob08
@@ -287,7 +287,7 @@ def FindNewBinder(args):
     df.to_csv('{}.sorted.uniq.csv'.format(savename))
 
 def CumulateRankBinder(args):
-    # python3 examples/antibody/utils/analyze.py -mode CumulateRankBinder -i . -o model.cdrmatch.json -threshold 0.85
+    # python3 antibody/utils/analyze.py -mode CumulateRankBinder -i . -o model.cdrmatch.json -threshold 0.85
     inputdir, savename = args.i, args.o
     thre = args.threshold
     files = [os.path.join(inputdir, x) for x in os.listdir(inputdir) if x.endswith('.log')]

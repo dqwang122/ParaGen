@@ -47,7 +47,7 @@ def calF(hypo, gold, return_all=False):
     return f
 
 
-## python eval.py acc hypo gold
+## python metric.py acc hypo gold
 
 if __name__ == "__main__":
     mode = sys.argv[1]

@@ -24,7 +24,7 @@ echo "[DATA]    ${DATADIR}/${DATA}"
 echo "[CROSS]   K=$K"
 echo "[ARGS]    $argslist" 
 
-# bash examples/antibody/scripts/cross_valid.sh paratope_germ paratope_cross eatlm paratope_proc 10 [save/drop]
+# bash antibody/scripts/cross_valid.sh paratope_germ paratope_cross eatlm paratope_proc 10 [save/drop]
 
 python3 -m pip install -U -e .
 
@@ -34,6 +34,7 @@ if [ "$LOG" == "save" ]; then
     do
         echo ${MODEL}_${i} 
         paragen-run --config ${WOKESHOP}/configs/${CONFIG}.yaml \
+                    --lib antibody/src \
                     --task.data.train.path ${DATADIR}/${DATA}/cross_train_${i}_all.json \
                     --task.data.valid.path ${DATADIR}/${DATA}/cross_valid_${i}_all.json \
                     --task.model.path ${WOKESHOP}/models/${MODEL}/best.pt \
@@ -51,6 +52,7 @@ elif [ "$LOG" == "drop" ]; then
       do
           echo ${MODEL}_${i} 
           paragen-run --config ${WOKESHOP}/configs/${CONFIG}.yaml \
+                      --lib antibody/src \
                       --task.data.train.path ${DATADIR}/${DATA}/cross_train_${i}_all.json \
                       --task.data.valid.path ${DATADIR}/${DATA}/cross_valid_${i}_all.json \
                       --task.model.path ${WOKESHOP}/models/${MODEL}/best.pt \
