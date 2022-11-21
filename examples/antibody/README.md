@@ -56,14 +56,14 @@ The ParaGen has many options for training and inference. Usually we use a *\*.ya
 
 We provide several sample configuration files for each model and task with default hyperparameters. These files can be found under the *configs/* directory of each model. If you want to use these configuration files, please change the options as you need. For example, change the default path.
 
-The antibody tasks are defined under *antibody/src/tasks/*. Therefore, the *antibody/src/* should be added as user-specific library. 
+The antibody tasks are defined under *examples/antibody/src/tasks/*. Therefore, the *examples/antibody/src/* should be added as user-specific library. 
 
 ### EATLM
 
 To run with our EATLM, the command looks like this:
 
 ``` shell
-$ paragen-run --config antibody/configs/downstream/cell_germ.yaml --lib antibody/src
+$ paragen-run --config examples/antibody/configs/downstream/cell_germ.yaml --lib examples/antibody/src
 ```
 
 
@@ -73,19 +73,19 @@ For esm and ablang, the specific library should be added:
 
 ``` shell
 # esm
-$ paragen-run --config antibody/esm/configs/cell.yaml --lib antibody/src,antibody/esm/src
+$ paragen-run --config examples/antibody/esm/configs/cell.yaml --lib examples/antibody/src,examples/antibody/esm/src
 
 # ablang
-$ paragen-run --config antibody/ablang/configs/cell.yaml --lib antibody/src,antibody/ablang/src
+$ paragen-run --config examples/antibody/ablang/configs/cell.yaml --lib examples/antibody/src,examples/antibody/ablang/src
 ```
 
 
 ## Running scripts
 
-We provide some scripts for repeative experiments under the *antibody/scripts* directory. We can use these scripts for k-cross validation.
+We provide some scripts for repeative experiments under the *examples/antibody/scripts* directory. We can use these scripts for k-cross validation.
 
 ``` shell
-$ bash antibody/scripts/cross_valid.sh <config> <model> <data> k [save/drop]
+$ bash examples/antibody/scripts/cross_valid.sh <config> <model> <data> k [save/drop]
 ```
 
 The details explanations of each option can be found in the *cross_valid.sh*. 
@@ -93,7 +93,7 @@ The details explanations of each option can be found in the *cross_valid.sh*.
 Besides, we also provide the postprocessing script for disease diagnosis. The entry is *disease_diagnosis.sh*. It can download sequence-level results from HDFS and calculate the individual-level results:
 
 ``` shell
-$ bash antibody/scripts/disease_diagnosis.sh [download/seq/ind] <disease> <model> <name>
+$ bash examples/antibody/scripts/disease_diagnosis.sh [download/seq/ind] <disease> <model> <name>
 ```
 
 **[Attention] Please modify the default HDFS path before using these scripts.**
